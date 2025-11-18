@@ -1,0 +1,38 @@
+create database Shop;
+use Shop;
+
+create table customers(
+customerID int primary key auto_increment not null,
+customerName varchar ( 100 ) not null,
+contactEmail varchar ( 100 )
+);
+
+create table orders (
+orderID int primary key auto_increment not null,
+customerID int not null,
+orderDate date not null,
+totalAmount decimal (10,2) not null,
+foreign key ( customerID ) references customers ( customerID )
+);
+
+insert into customers ( customerID , customerName ,contactEmail )
+values 
+( '1','Huy','huy@gmail.com'),
+( '2','Huy2','huy2@gmail.com'),
+( '3','Huy3','huy3@gmail.com');
+
+insert into orders
+values 
+('1','1','2025-11-11','500.00'),
+('2','2','2025-2-11','1000.00'),
+('3','3','2025-3-11','1500.00');
+
+select 
+o.orderID,
+o.orderDate,
+o.totalAmount,
+c.customerName,
+c.contactEmail
+from orders as o
+inner join	customers as c
+on o.customerID = c.customerID;
