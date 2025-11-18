@@ -1,0 +1,23 @@
+create database Shop;
+use Shop;
+
+create table  EmployeeSalaries (
+employeeID int not null primary key,
+departmentID int not null,
+salary decimal ( 10 , 2 )
+);
+
+insert into EmployeeSalaries 
+values 
+(1,2,'1000.00'),
+(2,3,'3000.00'),
+(3,4,'4000.00'),
+(5,5,'5000.00'),
+(6,3,'6000.00'),
+(7,4,'7000.00');
+
+select departmentID,
+sum(salary) as total_salary, 
+avg(salary) as average_salary
+from EmployeeSalaries
+group by departmentID;
